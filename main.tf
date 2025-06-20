@@ -44,7 +44,7 @@ resource "aws_instance" "tfcloud_test" {
   instance_type = "t3.micro"
   key_name = aws_key_pair.tfcloud_key.key_name
 
-  vpc_security_group_ids = [ aws_security_group.test_sg.id ]
+  vpc_security_group_ids = [ aws_security_group.test_sg.id, aws_security_group.web-sg.id ]
   subnet_id = data.aws_subnets.public.ids[0]
   associate_public_ip_address = true
 
