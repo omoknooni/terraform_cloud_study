@@ -82,6 +82,22 @@ resource "aws_security_group" "test_sg" {
   }
 }
 
+resource "aws_security_group" "web-sg" {
+  name = "web-sg"
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "tls_private_key" "instance_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
